@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+/* 管理画面とお知らせページの配色（CLAUDE.md の配色表と同じ） */
+@theme {
+  --color-ink: #3b2a20; /* 本文の文字 */
+  --color-accent: #f4a460; /* 重要なボタン（保存・追加など） */
+  --color-danger: #9c6b5e; /* 取り消しにくい操作・失敗の知らせ */
+  --color-line: #e8dfd8; /* 枠線・区切り線 */
+  --color-focus: #8b5e3c; /* 入力中の枠・新しく書く枠 */
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: #ffffff;
+  color: var(--color-ink);
+}
