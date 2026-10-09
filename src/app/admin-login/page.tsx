@@ -7,9 +7,9 @@ export const metadata: Metadata = {
   title: "管理画面の入口",
 };
 
-// 管理画面の入口。合言葉を入れると管理画面が開く
+// 管理画面の入口。パスワードを入れると管理画面が開く
 export default async function AdminLoginPage() {
-  // 合言葉が設定されているかは、開くたびに確かめる
+  // パスワードが設定されているかは、開くたびに確かめる
   await connection();
 
   return (
@@ -17,12 +17,12 @@ export default async function AdminLoginPage() {
       <h1 className="text-2xl font-bold">管理画面</h1>
       {isPasswordSet() ? (
         <>
-          <p className="mt-2 text-base leading-relaxed">合言葉を入れて、「管理画面を開く」を押してください。</p>
+          <p className="mt-2 text-base leading-relaxed">パスワードを入れて、「管理画面を開く」を押してください。</p>
           <LoginForm />
         </>
       ) : (
         <p role="alert" className="mt-6 rounded-lg border border-danger p-4 text-base leading-relaxed text-danger">
-          合言葉が未設定です。管理画面は開けません。
+          パスワードが未設定です。管理画面は開けません。
         </p>
       )}
     </main>
