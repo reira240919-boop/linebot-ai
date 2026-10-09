@@ -7,9 +7,9 @@ import { ADMIN_COOKIE, isPasswordSet, tokenIfPasswordMatches } from "@/lib/admin
 export type LoginState = { error: string | null };
 
 export async function loginAction(_prev: LoginState, formData: FormData): Promise<LoginState> {
-  if (!isPasswordSet()) return { error: "合言葉が未設定です" };
+  if (!isPasswordSet()) return { error: "パスワードが未設定です" };
   const token = tokenIfPasswordMatches(String(formData.get("password") ?? ""));
-  if (!token) return { error: "合言葉が違います" };
+  if (!token) return { error: "パスワードが違います" };
 
   // 期限を付けない印にする。ブラウザを閉じるまで、入り直さなくてよい
   (await cookies()).set(ADMIN_COOKIE, token, {

@@ -10,7 +10,7 @@ export default function LoginForm() {
   return (
     <form action={action} className="mt-6 flex flex-col gap-4">
       <label className="block text-base font-bold">
-        合言葉
+        パスワード
         <input
           type="password"
           name="password"
