@@ -1,36 +1,31 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 美容室 LINE bot + AI 自動応答
 
-## Getting Started
+美容室の LINE 公式アカウントに届いた質問に、登録した内容をもとに自動で返事をするしくみです。
 
-First, run the development server:
+## できること
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **自動で返事**: お客様の質問に、管理画面で登録した「質問と答え」「メニューと料金」をもとに AI が返事をします。登録にないことは答えません。
+- **答えられない質問はオーナーへ**: 自動で答えられない質問が来たら、お客様には「スタッフが確認してご返信します」と返し、オーナーの LINE に 1 通届けます。オーナーは LINE 公式アカウントのチャットから返信します。
+- **管理画面**: スマホから、次の 3 つを直せます。パスワードで入ります。
+  - 質問と答え
+  - メニューと料金
+  - お知らせ（臨時休業など。お客様用のお知らせページに出ます）
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 本番の URL
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+https://linebot-ai-eight.vercel.app
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- 管理画面: `/admin`
+- お知らせページ: `/notice`
 
-## Learn More
+## 使っているもの
 
-To learn more about Next.js, take a look at the following resources:
+- Next.js（画面と LINE の受け取り）
+- Vercel（公開）
+- Supabase（登録内容と会話ログの保存）
+- Claude API（質問を読んで返事を作る）
+- LINE Messaging API（LINE とのやり取り）
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 鍵の置き場所
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+API キーやトークン、パスワードは `.env.local` に置きます。Git には入れません。必要な名前は `.env.local.example` を見てください。
