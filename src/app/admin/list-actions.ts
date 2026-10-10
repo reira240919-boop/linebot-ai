@@ -1,6 +1,6 @@
 import type { ActionResult } from "./action-result";
 
-// 「質問と答え」「メニューと料金」の保存・削除で共通の流れ
+// 「FAQ設定」「メニューと料金」の保存・削除で共通の流れ
 
 export const SAVE_FAILED = "保存できませんでした。通信の状態を確かめて、もう一度お試しください。";
 export const DELETE_FAILED = "削除できませんでした。通信の状態を確かめて、もう一度お試しください。";

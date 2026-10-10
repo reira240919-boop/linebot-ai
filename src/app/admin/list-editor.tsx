@@ -4,7 +4,7 @@ import { useState, type ReactNode } from "react";
 import type { ActionResult } from "./action-result";
 import { dangerButton, inputBox, plainButton, primaryButton, StatusBanner, useAdminAction } from "./ui";
 
-// 「質問と答え」「メニューと料金」で共通の、追加・編集・削除ができる一覧
+// 「FAQ設定」「メニューと料金」で共通の、追加・編集・削除ができる一覧
 
 // 入力欄 1 つ分の設定。rows を付けると複数行の欄になる
 export type Field = { label: string; placeholder: string; rows?: number };

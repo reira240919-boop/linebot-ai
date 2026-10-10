@@ -2,8 +2,8 @@
 
 /* 管理画面とお知らせページの配色（CLAUDE.md の配色表と同じ） */
 @theme {
-  --color-ink: #3b2a20; /* 本文の文字 */
-  --color-accent: #f4a460; /* 重要なボタン（保存・追加など） */
+  --color-ink: #4a4a4a; /* 本文の文字（読みやすい濃さのグレー） */
+  --color-accent: #e6c4c4; /* 重要なボタン（保存・追加など） */
   --color-danger: #9c6b5e; /* 取り消しにくい操作・失敗の知らせ */
   --color-line: #e8dfd8; /* 枠線・区切り線 */
   --color-focus: #8b5e3c; /* 入力中の枠・新しく書く枠 */
