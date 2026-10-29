@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>LINE自動応答 説明図</title>
+<style>
+  /* オーナー様に説明する図。1600×1120 の1枚を、横向き A4 の PDF にする */
+  :root {
+    --bg: #f3f5f8;
+    --card: #ffffff;
+    --fg: #1d2633;
+    --muted: #5d6878;
+    --rule: #d6dce4;
+    --tokyo: #e8873a;
+    --tokyo-soft: #fdf3ea;
+    --us: #7a8494;
+    --us-soft: #f1f2f5;
+    --phone: #2f64a8;
+    --phone-soft: #edf3fb;
+    --line: #5d6878;
+    --line-soft: #f6f7f9;
+    --ask: #3f8a3c;
+    --own: #2f64a8;
+    --gate: #b42318;
+    --font: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", sans-serif;
+  }
+  @page { size: A4 landscape; margin: 0; }
+  * { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  html, body { margin: 0; background: var(--bg); }
+  body { font-family: var(--font); color: var(--fg); }
+  .canvas { position: relative; width: 1600px; height: 1120px; margin: 0 auto; background: var(--bg); }
+  .abs { position: absolute; }
+  @media print {
+    .canvas { zoom: .70; }
+  }
+
+  header { left: 40px; top: 28px; right: 40px; }
+  header h1 { margin: 0; font-size: 34px; font-weight: 800; letter-spacing: .02em; }
+  header p { margin: 6px 0 0; font-size: 16px; color: var(--muted); }
+
+  .zone { border: 3px solid; padding: 12px 18px; }
+  .zone .label { font-size: 17px; font-weight: 800; }
+  .zone .label small { font-weight: 500; font-size: 14px; color: var(--muted); margin-left: 8px; }
+  .phone { border-color: var(--phone); background: var(--phone-soft); }
+  .phone .label { color: var(--phone); }
+  .line { border-color: var(--line); background: var(--line-soft); }
+  .line .label { color: #3d4757; }
+  .tokyo { border-color: var(--tokyo); background: var(--tokyo-soft); border-width: 4px; }
+  .tokyo .label { color: #b85e17; }
+  .us { border-color: var(--us); background: var(--us-soft); border-style: dashed; }
+  .us .label { color: #4b5463; }
+
+  .box { background: var(--card); border: 2px solid var(--rule); padding: 14px 16px; display: grid; align-content: start; gap: 4px; }
+  .box h2 { margin: 0; font-size: 21px; font-weight: 800; }
+  .box p { margin: 0; font-size: 13.5px; color: var(--muted); line-height: 1.55; }
+  .box p b { color: var(--fg); font-weight: 700; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+  .chip { font-size: 13px; padding: 3px 9px; background: var(--tokyo-soft); border: 1px solid #f1c9a5; color: #8a4a12; }
+  .gate { font-size: 13px; font-weight: 700; color: #fff; background: var(--gate); padding: 4px 10px; justify-self: start; margin-top: 6px; }
+
+  .step { font-size: 13.5px; font-weight: 700; line-height: 1.45; white-space: nowrap; background: #fff; border: 1px solid currentColor; padding: 1px 6px; }
+  .step.s { color: var(--ask); }
+  .step.i { color: var(--own); }
+
+  .legend { right: 40px; top: 40px; display: flex; gap: 18px; font-size: 14px; color: var(--muted); align-items: center; }
+  .legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .legend i { display: inline-block; width: 28px; height: 4px; }
+
+  .safety { left: 40px; right: 40px; top: 800px; height: 290px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .safety h3 { margin: 0 0 4px; font-size: 15px; letter-spacing: .08em; color: var(--muted); grid-column: 1 / -1; }
+  .card { background: var(--card); border-top: 5px solid; padding: 16px 18px; display: grid; align-content: start; gap: 8px; }
+  .card h4 { margin: 0; font-size: 19px; font-weight: 800; }
+  .card ul { margin: 0; padding-left: 1.1em; display: grid; gap: 6px; font-size: 13.5px; line-height: 1.6; color: #2c3644; }
+  .card ul small { color: var(--muted); font-size: 13px; }
+  .card.gatec { border-color: var(--gate); }
+  .card.tokyoc { border-color: var(--tokyo); }
+  .card.usc { border-color: var(--us); }
+</style>
+</head>
+<body>
+<div class="canvas">
+
+  <header class="abs">
+    <h1>LINE 自動応答 のしくみと安全の境界</h1>
+    <p>美容室 LINE bot + AI 自動応答　しくみと安全の説明 ／ 登録した内容だけを使って、LINE の質問にその場で答えます</p>
+  </header>
+  <div class="abs legend">
+    <span><i style="background:var(--ask)"></i>質問に答えるまで（①〜⑥）</span>
+    <span><i style="background:var(--own)"></i>管理画面とお知らせ（Ⓐ〜Ⓒ）</span>
+  </div>
+
+  <!-- 区域 -->
+  <div class="abs zone phone" style="left:40px; top:140px; width:270px; height:620px;">
+    <div class="label">スマホ<small>お客様・オーナー様</small></div>
+  </div>
+  <div class="abs zone line" style="left:340px; top:140px; width:220px; height:620px;">
+    <div class="label">LINE<small>LINE 社のサービス</small></div>
+  </div>
+  <div class="abs zone tokyo" style="left:590px; top:140px; width:630px; height:620px;">
+    <div class="label">国内・東京<small>サイトもデータも、すべてここ</small></div>
+  </div>
+  <div class="abs zone us" style="left:1250px; top:140px; width:310px; height:620px;">
+    <div class="label">海外・米国<small>答えを書くだけ</small></div>
+  </div>
+
+  <!-- 箱 -->
+  <div class="abs box" style="left:60px; top:200px; width:230px; height:170px;">
+    <h2>お客様</h2>
+    <p>いつもの LINE で質問する。営業時間・値段・駐車場などに、その場で返事が届く</p>
+  </div>
+  <div class="abs box" style="left:60px; top:540px; width:230px; height:190px;">
+    <h2>オーナー様</h2>
+    <p>スマホの管理画面で、FAQ・メニューと料金・お知らせを直す。パソコンは要らない</p>
+    <p>通知が来た質問だけ、チャットで返信する</p>
+  </div>
+
+  <div class="abs box" style="left:360px; top:200px; width:180px; height:210px;">
+    <h2 style="font-size:18px">公式アカウント</h2>
+    <p>いまの公式アカウント（友だち約 300 人）をそのまま使う</p>
+    <p><b>Messaging API</b>（LINE とプログラムをつなぐ窓口）</p>
+  </div>
+
+  <div class="abs box" style="left:612px; top:196px; width:586px; height:170px;">
+    <h2>LINE の受付</h2>
+    <p><b>Vercel</b>（ウェブサイトを動かすサービス）の東京で動く。質問を受け取り、探す・答えさせる・返事する・記録するを順に行う</p>
+    <div class="gate">署名の門：LINE から届いたものだけ通す</div>
+  </div>
+  <div class="abs box" style="left:612px; top:560px; width:270px; height:176px;">
+    <h2>管理画面とお知らせ</h2>
+    <p>受付と同じサイトの中にある。お知らせは、終わりの日を過ぎると自動で消える</p>
+    <div class="gate">管理画面の門：パスワード</div>
+  </div>
+  <div class="abs box" style="left:940px; top:560px; width:258px; height:176px;">
+    <h2>保管庫</h2>
+    <p><b>Supabase</b>（データをためておく場所）。外から直接は読めない</p>
+    <div class="chips">
+      <span class="chip">FAQ</span>
+      <span class="chip">メニューと料金</span>
+      <span class="chip">お知らせ</span>
+      <span class="chip">会話の記録</span>
+    </div>
+  </div>
+
+  <div class="abs box" style="left:1270px; top:196px; width:270px; height:240px;">
+    <h2>答えを書く AI</h2>
+    <p><b>Claude API</b>（Anthropic 社の AI を、外から呼び出す窓口）。登録した FAQ・メニューだけを読んで、日本語で答える</p>
+    <p>自信がないときは答えず、オーナー様に回す</p>
+  </div>
+
+  <!-- 矢印 -->
+  <svg class="abs" style="left:0; top:0;" width="1600" height="1120" viewBox="0 0 1600 1120" aria-hidden="true">
+    <defs>
+      <marker id="hs" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#3f8a3c"/></marker>
+      <marker id="hi" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2f64a8"/></marker>
+    </defs>
+    <g fill="none" stroke-width="4">
+      <!-- ① お客様 → LINE -->
+      <path d="M290,250 H356" stroke="#3f8a3c" marker-end="url(#hs)"/>
+      <!-- ② LINE → 受付 -->
+      <path d="M540,250 H608" stroke="#3f8a3c" marker-end="url(#hs)"/>
+      <!-- ③ 受付 ⇄ 保管庫 -->
+      <path d="M1064,370 V556" stroke="#3f8a3c" marker-start="url(#hs)" marker-end="url(#hs)"/>
+      <!-- ④ 受付 ⇄ AI -->
+      <path d="M1198,260 H1266" stroke="#3f8a3c" marker-start="url(#hs)" marker-end="url(#hs)"/>
+      <!-- ⑤ 受付 → LINE → お客様 -->
+      <path d="M612,316 H544" stroke="#3f8a3c" marker-end="url(#hs)"/>
+      <path d="M360,316 H294" stroke="#3f8a3c" marker-end="url(#hs)"/>
+      <!-- ⑥ 受付 → LINE → オーナー様（答えられないときだけ） -->
+      <path d="M612,352 H544" stroke="#3f8a3c" stroke-dasharray="10 6" marker-end="url(#hs)"/>
+      <path d="M410,410 V580 H294" stroke="#3f8a3c" stroke-dasharray="10 6" marker-end="url(#hs)"/>
+      <!-- Ⓐ オーナー様 → 管理画面 -->
+      <path d="M290,690 H608" stroke="#2f64a8" stroke-dasharray="10 6" marker-end="url(#hi)"/>
+      <!-- Ⓑ 管理画面 ⇄ 保管庫 -->
+      <path d="M882,648 H936" stroke="#2f64a8" stroke-dasharray="10 6" marker-start="url(#hi)" marker-end="url(#hi)"/>
+      <!-- Ⓒ リッチメニュー → お知らせページ -->
+      <path d="M500,410 V610 H608" stroke="#2f64a8" stroke-dasharray="10 6" marker-end="url(#hi)"/>
+    </g>
+  </svg>
+
+  <!-- 矢印の説明 -->
+  <div class="abs step s" style="left:292px; top:222px;">① 質問</div>
+  <div class="abs step s" style="left:544px; top:222px;">② 届く</div>
+  <div class="abs step s" style="left:908px; top:440px;">③ 登録内容を読む／<br>会話を記録する</div>
+  <div class="abs step s" style="left:1176px; top:226px;">④ AI に聞く</div>
+  <div class="abs step s" style="left:296px; top:322px;">⑤ 返事</div>
+  <div class="abs step s" style="left:546px; top:282px;">⑤ 返事</div>
+  <div class="abs step s" style="left:300px; top:520px;">⑥ 答えられない<br>ときだけ通知</div>
+  <div class="abs step i" style="left:422px; top:452px;">Ⓒ リッチメニュー<br>でお知らせを開く</div>
+  <div class="abs step i" style="left:330px; top:698px;">Ⓐ スマホで開いて直す</div>
+  <div class="abs step i" style="left:884px; top:612px;">Ⓑ 保存</div>
+
+  <!-- 安全の境界 -->
+  <section class="abs safety">
+    <h3>安全の境界</h3>
+    <div class="card gatec">
+      <h4>入口の確認</h4>
+      <ul>
+        <li>LINE からの受付は、署名（LINE が付ける本物のしるし）を確かめ、それ以外は断る</li>
+        <li>管理画面は、パスワードで入った人だけが開ける<br><small>お知らせページは、お客様が見るので誰でも開ける</small></li>
+        <li>鍵（API キー＝外のサービスを使うための合言葉）は、サーバーの中だけで使う。画面には出ない</li>
+      </ul>
+    </div>
+    <div class="card tokyoc">
+      <h4>データを置く場所は東京</h4>
+      <ul>
+        <li>FAQ・メニューと料金・お知らせ・会話の記録は、すべて東京の保管庫（Supabase）に置く</li>
+        <li>会話の記録に残すのは、LINE の番号・質問・返事・オーナー様の返信が要ったか</li>
+        <li>サイトも東京で動く（Vercel の東京）。保管庫は、そのサーバーだけが読み書きできる</li>
+      </ul>
+    </div>
+    <div class="card usc">
+      <h4>外に送るもの</h4>
+      <ul>
+        <li>米国の AI に送るのは、質問と、登録した FAQ・メニューだけ。答えを作るために使い、保管場所にはしない</li>
+        <li>オーナー様への通知に載るのは、お客様の LINE の名前と質問文だけ</li>
+        <li>LINE の通数に数えるのは、この通知だけ（月 60〜90 通ほど。無料は月 200 通まで）</li>
+      </ul>
+    </div>
+  </section>
+
+</div>
+</body>
+</html>
